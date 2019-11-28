@@ -86,9 +86,9 @@ cache.startWSGoyPick = (aeternity) => {
             if (message.type === 'utf8' && message.utf8Data.includes("payload")) {
                 const data = JSON.parse(message.utf8Data);
                 if (data.subscription === "object") {
-                    console.log(data.payload);
-                    const payGoyPick = await aeternity.goypicksale(data.payload.tx.sender_id,data.payload.tx.amount);
-                    console.log('Enviado');
+                    if (aeternity.callAndKeep(data.payload.hash,data.payload.tx.sender_id,data.payload.tx.amount)){
+                        const payGoyPick = await aeternity.goypicksale(data.payload.tx.sender_id,data.payload.tx.amount);    
+                    }
                 }
             }
         });

@@ -28,12 +28,14 @@ const util = require("./util");
     };
 
     callAndKeep(tx_hash,sender,amountSent) {
-    console.log("call and keep");
+      console.log("call and keep");
       if (this.buyers.find(element=>element.tx_hash==tx_hash&&element.sender==sender)==null){
             this.buyers.push({sender,tx_hash,amountSent});
             console.log("registering payment from ",sender, " for ",amountSent, "at hash ", tx_hash);
+            return true;
         }else{
             console.log("already registered");
+            return false;
         }
 
    }
@@ -47,10 +49,10 @@ const util = require("./util");
         return txs;
     };
 
+    
     goypicksale = async (sender,amount) => {
-        const txs= (await axios.post(`http://52.117.30.244:8080/GoyPickVentas/servoy-service/rest_ws/GoyPickVentas/aeternity`,
+        const txs= (await axios.post(`http://52.117.30.244:8080/Aeternity/servoy-service/rest_ws/restGoyPick/aeternity`,
                     {sender_id: sender, payed_amount: amount}));
-                    console.log(txs);
         return txs;
     };
   
