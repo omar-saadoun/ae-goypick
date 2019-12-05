@@ -80,7 +80,7 @@ cache.startWSGoyPick = (aeternity) => {
         cache.wsconnection.send(JSON.stringify({
             op: "subscribe",
             payload: "object",
-            target: "ak_2YpHG7BzPRWzB9oR4NiRZEqgj39UjbbokD89aobmnpjJEJNJXk" //TODO env variable
+            target: "ak_2doFSthrAAW3dwdh4UVXNwnjaGfWwgZKaNkyewGLCv9uA8Kp9T" //TODO env variable
         }));
         cache.wsconnection.on('message', async message => {
             if (message.type === 'utf8' && message.utf8Data.includes("payload")) {
